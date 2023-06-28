@@ -1,10 +1,13 @@
-.app {
+:root {
   font-family: Arial, sans-serif;
+  background-color: rgb(243, 236, 236);
+}
+.app {
+  background-color: rgb(201, 215, 210);
+  border: 1px solid black;
   margin: 10px auto;
   max-width: 500px;
-  padding: 40px 60px 40px 40px;
-  border: 1px solid black;
-  background-color: whitesmoke;
+  padding: 60px 80px 60px 60px;
 }
 
 .header {
@@ -17,7 +20,7 @@
 input[type="text"] {
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 2px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;

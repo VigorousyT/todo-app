@@ -17,7 +17,7 @@ const TodoInput = ({ addTodo }) => {
   return (
     <input
       type="text"
-      placeholder="Add a todo..."
+      placeholder="Start your day by adding a Todo..."
       value={todoText}
       onChange={(e) => setTodoText(e.target.value)}
       onKeyPress={handleKeyPress}

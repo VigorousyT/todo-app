@@ -39,12 +39,12 @@ const App = () => {
   return (
     <div className="app">
       <div className="header">
-        <h1><BsListTask /> To Do List</h1>
+        <h1><BsListTask size={30} /> To Do List</h1>
         <button onClick={resetTodos}>Reset</button>
       </div>
       <TodoInput addTodo={addTodo} />
       <TodoList todos={todos.filter((todo) => !todo.completed)} completeTodo={completeTodo} />
-      <h1> <BsFillClipboardCheckFill /> Completed Task</h1>
+      <h1> <BsFillClipboardCheckFill size={30} /> Completed Task</h1>
       <TodoList todos={todos.filter((todo) => todo.completed)} completeTodo={completeTodo} />
     </div>
   );
