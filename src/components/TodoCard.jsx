@@ -1,14 +1,18 @@
 import React from "react";
 
 const TodoCard = ({ todo, completeTodo }) => {
-  const handleCardClick = () => {
-    completeTodo(todo);
+  const handleClick = () => {
+    if (todo.completed) {
+      completeTodo(todo, false);
+    } else {
+      completeTodo(todo, true);
+    }
   };
 
   return (
     <div
       className={`todo-card ${todo.completed ? "completed" : ""}`}
-      onClick={handleCardClick}
+      onClick={handleClick}
     >
       {todo.text}
     </div>

@@ -22,15 +22,30 @@ const App = () => {
     setTodos([...todos, newTodo]);
   };
 
-  const completeTodo = (todo) => {
+  const completeTodo = (todo, isCompleted) => {
     const updatedTodos = todos.map((t) => {
       if (t === todo) {
-        return { ...t, completed: true };
+        return { ...t, completed: isCompleted };
       }
       return t;
     });
-    setTodos(updatedTodos);
+
+    const sortedTodos = updatedTodos.sort((a, b) => {
+      if (a.completed && b.completed) {
+        return b.completedAt - a.completedAt;
+      }
+      if (a.completed) {
+        return 1;
+      }
+      if (b.completed) {
+        return -1;
+      }
+      return b.createdAt - a.createdAt;
+    });
+    setTodos(sortedTodos);
   };
+
+
 
   const resetTodos = () => {
     setTodos([]);
