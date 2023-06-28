@@ -5,6 +5,7 @@
 .app {
   background-color: rgb(201, 215, 210);
   border: 1px solid black;
+  border-radius: 2.5%;
   margin: 10px auto;
   max-width: 500px;
   padding: 60px 80px 60px 60px;
