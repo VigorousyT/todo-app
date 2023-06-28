@@ -1,25 +1,53 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import TodoInput from './components/TodoInput';
+import TodoList from './components/TodoList';
 import './App.css';
+import { BsListTask, BsFillClipboardCheckFill } from "react-icons/bs"
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  const addTodo = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
+
+  const completeTodo = (todo) => {
+    const updatedTodos = todos.map((t) => {
+      if (t === todo) {
+        return { ...t, completed: true };
+      }
+      return t;
+    });
+    setTodos(updatedTodos);
+  };
+
+  const resetTodos = () => {
+    setTodos([]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="header">
+        <h1><BsListTask /> To Do List</h1>
+        <button onClick={resetTodos}>Reset</button>
+      </div>
+      <TodoInput addTodo={addTodo} />
+      <TodoList todos={todos.filter((todo) => !todo.completed)} completeTodo={completeTodo} />
+      <h1> <BsFillClipboardCheckFill /> Completed Task</h1>
+      <TodoList todos={todos.filter((todo) => todo.completed)} completeTodo={completeTodo} />
     </div>
   );
-}
+};
 
 export default App;
